@@ -1,9 +1,9 @@
 {% capture link_handle %}{{ link.title | handle }}{% endcapture %}
-{% capture linkurl %}{{ link.url }}{% endcapture %} 
+{% capture linkurl %}{{ link.url }}{% endcapture %}
 {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
 
 {% if link.title == settings.megadropdown_link %}
-<li class="dropdown">{{ link.title | link_to: link.url }}  
+<li class="dropdown">{{ link.title | link_to: link.url }}
 
   <ul class="megamenu row">
     {% if settings.nav_promo_image %}
@@ -22,9 +22,9 @@
       {% if settings.mega_3_show %}{% assign mega = mega | plus: 1 %}{% endif %}
       {% if settings.mega_4_show %}{% assign mega = mega | plus: 1 %}{% endif %}
 
-      {% if mega > 0 %}    
+      {% if mega > 0 %}
       <!-- Start Megamenu Inner Links -->
-      {% if settings.mega_1_show %}            
+      {% if settings.mega_1_show %}
       <li class="desktop-{{ 12 | divided_by: mega }} tablet-fourth"><h4>{{ linklists[settings.mega_1_links].title }}</h4>
         <ul class="mega-stack">
           {% for link in linklists[settings.mega_1_links].links %}
@@ -33,7 +33,7 @@
         </ul>
       </li>
       {% endif %}
-      {% if settings.mega_2_show %}            
+      {% if settings.mega_2_show %}
       <li class="desktop-{{ 12 | divided_by: mega }} tablet-fourth"><h4>{{ linklists[settings.mega_2_links].title }}</h4>
         <ul class="mega-stack">
           {% for link in linklists[settings.mega_2_links].links %}
@@ -42,7 +42,7 @@
         </ul>
       </li>
       {% endif %}
-      {% if settings.mega_3_show %}            
+      {% if settings.mega_3_show %}
       <li class="desktop-{{ 12 | divided_by: mega }} tablet-fourth"><h4>{{ linklists[settings.mega_3_links].title }}</h4>
         <ul class="mega-stack">
           {% for link in linklists[settings.mega_3_links].links%}
@@ -51,29 +51,29 @@
         </ul>
       </li>
       {% endif %}
-      {% if settings.mega_4_show %}            
+      {% if settings.mega_4_show %}
       <li class="desktop-{{ 12 | divided_by: mega }} tablet-fourth"><h4>{{ linklists[settings.mega_4_links].title }}</h4>
         <ul class="mega-stack">
           {% for link in linklists[settings.mega_4_links].links %}
           <li>{{ link.title | link_to: link.url }}</li>
           {% endfor %}
         </ul>
-      </li> 
-      {% endif %}    
-      {% endif %}  
+      </li>
+      {% endif %}
+      {% endif %}
     </span>
 
   </ul>
 </li>
 
 {% elsif linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-<li class="dropdown">{{ link.title | link_to: link.url }}  
+<li class="dropdown">{{ link.title | link_to: link.url }}
 
   <ul class="submenu">
     {% for l in linklists[child_list_handle].links %}
     {% capture child_list_handle %}{{ l.title | handleize }}{% endcapture %}
-    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}      
-    <li class="nest"><a href="{{ l.url }}">{{ l.title }}</a>                 
+    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+    <li class="nest"><a href="{{ l.url }}">{{ l.title }}</a>
       <ul class="nested">
         {% for l in linklists[child_list_handle].links %}
         <li><a href="{{ l.url }}">{{ l.title }}</a></li>
@@ -81,7 +81,7 @@
       </ul>
     </li>
     {% else %}
-    <li><a href="{{ l.url }}">{{ l.title }}</a></li>    
+    <li><a href="{{ l.url }}">{{ l.title }}</a></li>
     {% endif %}
 
     {% endfor %}
