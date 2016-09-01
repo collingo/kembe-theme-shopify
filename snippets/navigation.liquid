@@ -89,5 +89,5 @@
 </li>
 
 {% else %}
-<li>{{ link.title | link_to: link.url }}</li>
+<li class="{{ link.title | replace: " ", "" | downcase }}">{{ link.title | link_to: link.url }}</li>
 {% endif %}
