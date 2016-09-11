@@ -242,11 +242,18 @@
       <div class="clear"></div>
 
       <nav>
-        <ul id="main-nav" role="navigation" {% if template == 'index' and settings.display-wide %}style="margin-bottom: 0;"{% else %}{% endif %} class="row">
-          {% for link in linklists.main-menu.links %}
-          {% include 'navigation' %}
-          {% endfor %}
-        </ul>
+        <div id="nav-wrap">
+          <ul id="main-nav" role="navigation" {% if template == 'index' and settings.display-wide %}style="margin-bottom: 0;"{% else %}{% endif %} class="">
+            {% for link in linklists.main-menu.links %}
+            {% include 'navigation' %}
+            {% endfor %}
+          </ul>
+          <ul id="promo-items">
+            <li class="free">Free UK delivery</li>
+            <li class="shipping">Express delivery</li>
+            <li class="international">International shipping</li>
+          </ul>
+        </div>
       </nav>
 
       <div class="clear"></div>
@@ -344,6 +351,12 @@
             <input value="{{ 'general.newsletter_form.submit' | t }}" name="subscribe" id="footer-subscribe" class="button" type="submit">
           </form>
         </div>
+        <div class="payment-types">
+          {% for type in shop.enabled_payment_types %}
+          <img src="{{ type | payment_type_img_url }}" />
+          {% endfor %}
+          <img class="pci" src="{{ 'badge_pci_dss_compliant@2x.png' | asset_url }}" />
+        </div>
       </div>
       {% endif %}
       <div class="clear"></div>
@@ -399,7 +412,7 @@
 
         $(document).ready( function() {
           //enabling stickUp on the '.navbar-wrapper' class
-          $('nav').stickUp();
+          // $('nav').stickUp();
         });
       }
 
